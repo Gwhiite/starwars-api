@@ -45,12 +45,16 @@ app.delete("/:id", async (req, res) => {
 });
 
 app.put("/:id", async (req, res) => {
-  const films = await Film.findByIdAndUpdate(req.params.id, {
-    title: req.body.title,
-    description: req.body.description,
-    image_url: req.body.image_url,
-    trailer_url: req.body.trailer_url,
-  });
+  const films = await Film.findByIdAndUpdate(
+    req.params.id,
+    {
+      title: req.body.title,
+      description: req.body.description,
+      image_url: req.body.image_url,
+      trailer_url: req.body.trailer_url,
+    },
+    { new: true }
+  );
   return res.send(films);
 });
 
